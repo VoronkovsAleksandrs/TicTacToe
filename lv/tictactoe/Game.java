@@ -30,6 +30,7 @@ public class Game {
 
             field.setField(currentPlayer.selectCell(), currentPlayer.getMark());
             exampleField.printExample();
+            System.out.println(field.countFreeCell() + " cell's left");
             field.printField();
         }
     }
@@ -43,23 +44,45 @@ public class Game {
     }
 
     private boolean winnerDetected(Mark mark) {
-        Scanner scanner = new Scanner(System.in);
         if (field.verticalVictory(mark)
                 || field.horizontalVictory(mark)
                 || field.leftDiagonalVictory(mark)
                 || field.rightDiagonalVictory(mark)) {
+
             System.out.println("_____________________________________________________________");
             System.out.println("WE GOT NEW WINNER! Winner is Player " + currentPlayer.getMark());
             System.out.println("PRESS 1 to START NEW GAME");
-            int userAnswer = scanner.nextInt();
-            if (userAnswer == 1) {
-                Game game = new Game(new HumanPlayer(),new HumanPlayer());
-            } else {
-                System.exit(0);
-            }
+            reMatch();
+
             return false;
         }
+        if (draw()) {
+            reMatch();
+        }
         return true;
+    }
+
+    private boolean draw() {
+        if (field.countFreeCell() == 0) {
+            System.out.println("IT'S A DRAW. WE GOT NO WINNER");
+            System.out.println("PRESS 1 to START NEW GAME");
+            return true;
+        }
+        return false;
+
+    }
+
+    private void reMatch() {
+        Scanner scanner = new Scanner(System.in);
+        int userAnswer = scanner.nextInt();
+        if (userAnswer == 1) {
+            Game game = new Game(new HumanPlayer(), new HumanPlayer());
+        } else {
+            System.exit(0);
+            scanner.close();
+        }
+
+
     }
 
 

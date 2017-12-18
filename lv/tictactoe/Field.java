@@ -140,5 +140,16 @@ public class Field {
         return false;
     }
 
+    public int countFreeCell() {
+        int counter = 0;
+        for (int i = 1; i < 10; i++) {
+            if (getField(i) == (Mark.EMPTY)) {
+                counter++;
+            }
+
+        }return counter;
+
+    }
 }
+
 
