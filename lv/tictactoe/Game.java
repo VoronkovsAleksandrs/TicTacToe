@@ -3,17 +3,16 @@ package lv.tictactoe;
 import java.util.Scanner;
 
 public class Game {
-    private static final int MAX_TURNS = 9;
     private Field field;
     private Player player1;
     private Player player2;
     private Player currentPlayer;
     private ExampleField exampleField;
 
-    public Game(Player inPlayer1, Player inPlayer2) {
-        player1 = inPlayer1;
+    public Game(Player firstPlayer, Player secondPlayer) {
+        player1 = firstPlayer;
         player1.setMark(Mark.X);
-        player2 = inPlayer2;
+        player2 = secondPlayer;
         player2.setMark(Mark.O);
         exampleField = new ExampleField();
         field = new Field();
