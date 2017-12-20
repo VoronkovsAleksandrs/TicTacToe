@@ -87,13 +87,30 @@ public class Game {
         Scanner scanner = new Scanner(System.in);
         int userAnswer = scanner.nextInt();
         if (userAnswer == 1) {
-            Game game = new Game(new HumanPlayer(), new HumanPlayer());
+            setGameSetting();
         } else {
             System.exit(0);
             scanner.close();
         }
 
 
+    }
+    private void setGameSetting(){
+        System.out.println("Choose players setup:");
+        System.out.println("Press '1' for Human vs Human Match ");
+        System.out.println("Press '2' for Human vs Computer match");
+        System.out.println("Press '3' for Computer vs Computer match");
+        Scanner scanner = new Scanner(System.in);int userAnswer = scanner.nextInt();
+        if (userAnswer==1){
+            Game game1 = new Game(new HumanPlayer(),new HumanPlayer());
+        }
+        if (userAnswer==2){
+            Game game2 = new Game(new HumanPlayer(),new ComputerPlayer());
+        }
+        if (userAnswer==3){
+            Game game3 = new Game(new ComputerPlayer(),new ComputerPlayer());
+        }
+        scanner.close();
     }
 
 
