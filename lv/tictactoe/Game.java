@@ -27,15 +27,20 @@ public class Game {
         switchPlayers();
         while (winnerDetected(currentPlayer.getMark())) {
             switchPlayers();
-
-            field.setField(currentPlayer.selectCell(), currentPlayer.getMark());
-            exampleField.printExample();
-            System.out.println(field.countFreeCell() + " cell's left");
-            field.printField();
+            int passedMove = currentPlayer.selectCell();
+            if (field.checkFreeCell(passedMove)){
+                field.setField(passedMove, currentPlayer.getMark());
+                exampleField.printExample();
+                System.out.println(field.countFreeCell() + " cell's left");
+                field.printField();
+            }else {
+                System.out.println("This cell is already taken! Choose another cell");
+                switchPlayers();
+            }
         }
     }
 
-    private void switchPlayers() {
+    public void switchPlayers() {
         if (currentPlayer == player2) {
             currentPlayer = player1;
         } else {
