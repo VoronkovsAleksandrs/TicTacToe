@@ -28,13 +28,19 @@ public class Game {
         while (winnerDetected(currentPlayer.getMark())) {
             switchPlayers();
             int passedMove = currentPlayer.selectCell();
-            if (field.checkFreeCell(passedMove)){
-                field.setField(passedMove, currentPlayer.getMark());
-                exampleField.printExample();
-                System.out.println(field.countFreeCell() + " cell's left");
-                field.printField();
-            }else {
-                System.out.println("This cell is already taken! Choose another cell");
+            if (!(passedMove <= 0 || passedMove > 9)) {
+                if (field.checkFreeCell(passedMove)) {
+                    field.setField(passedMove, currentPlayer.getMark());
+                    exampleField.printExample();
+                    System.out.println(field.countFreeCell() + " cell's left");
+                    field.printField();
+                } else {
+                    System.out.println("This cell is already taken! Choose another cell");
+                    switchPlayers();
+                }
+
+            } else {
+                System.out.println(passedMove + " is not valid number. Please enter number from 1-9");
                 switchPlayers();
             }
         }

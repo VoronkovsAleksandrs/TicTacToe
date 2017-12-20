@@ -1,7 +1,7 @@
 package lv.tictactoe;
 
 public class Field {
-    private Game game;
+
 
     private static final int ROW = 3;
     private static final int COLUMNS = 3;
@@ -44,12 +44,10 @@ public class Field {
         if (move >= 7 && move <= 9) {
             field[2][move - 7] = mark;
         }
-        if (move <= 0 || move > 9) {
-            System.out.println(move + " is not valid number. Please enter number from 1-9");
-            game.switchPlayers();
 
-        }
+
     }
+
 
     public Mark getField(int move) {
         int row = 0;
@@ -150,7 +148,8 @@ public class Field {
                 counter++;
             }
 
-        }return counter;
+        }
+        return counter;
 
     }
 }
